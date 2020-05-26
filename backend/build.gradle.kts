@@ -18,6 +18,7 @@ val project = mapOf(
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = "1.8"
+//        jvmTarget = "11"      // 11, 14 doesn't work
     }
 }
 
