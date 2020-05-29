@@ -21,13 +21,15 @@ repositories {
 plugins {
     kotlin("jvm") version embeddedKotlinVersion
     id("io.spring.dependency-management") version "1.0.3.RELEASE"
+
+    /** handle open class ('final' in java) to generate Beans */
+    id("org.jetbrains.kotlin.plugin.spring") version embeddedKotlinVersion
     id("org.springframework.boot") version "2.0.4.RELEASE"
 }
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter")
-    compile(kotlin("stdlib"))
-//    compile(kotlin("stdlib-jre8"))          // changed from line above that worked in initial code
+    compile(kotlin("stdlib-jdk8"))          // changed from line above that worked in initial code
     compile(kotlin("reflect"))
 }
 

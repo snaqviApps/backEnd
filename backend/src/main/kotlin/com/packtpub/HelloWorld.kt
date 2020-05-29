@@ -1,12 +1,10 @@
 package com.packtpub
 
-import org.springframework.stereotype.Service
 
+/** HelloWorld is our Spring-Bean */
 
-/** HelloWorld is a Our Spring-Bean */
-
-@Service
-open class HelloWorld {
+//@Service
+class HelloWorld {
     fun sayHello(){
         println("Hi Zem, Welcome in the REST")
     }
