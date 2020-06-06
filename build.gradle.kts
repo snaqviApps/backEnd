@@ -12,6 +12,7 @@ plugins {
 
 dependencies {
   subprojects.forEach {
-    archives(it)
+//    archives(it)
+    gradleApi()
   }
 }

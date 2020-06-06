@@ -6,10 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.support.GenericApplicationContext
 import org.springframework.context.support.beans
-import java.lang.UnsupportedOperationException
 
 @SpringBootApplication
-class Config(private val helloWorld: HelloWorld): CommandLineRunner {
+class Config(private val helloWorld: IHelloWorld): CommandLineRunner {
     override fun run(vararg args: String?) {
         helloWorld.sayHello()
     }
@@ -21,7 +20,7 @@ fun main(args: Array<String>){
             ApplicationContextInitializer<GenericApplicationContext> {ctx ->
                 beans {
                     bean<HelloWorldConfig>()
-                }.initialize(ctx)
+                }.invoke(ctx)
     })
     application.run(*args)
 }

@@ -3,43 +3,43 @@ import org.gradle.api.tasks.bundling.Jar
 import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+
+
+plugins {
+    id("org.jetbrains.kotlin.jvm") version "1.3.72"
+}
+
 buildscript {
+    val springBootVersion: String = properties["springBootVersion"] as String
     repositories {
         maven { setUrl("https://repo.spring.io/milestone") }
     }
     dependencies{
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.M3")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
     }
 }
 
-repositories {
-    mavenCentral()
-    maven { setUrl("https://repo.spring.io/milestone") }
-    maven { setUrl("https://repo.spring.io/snapshot") }
-}
+subprojects {
+    repositories {
+        mavenCentral()
+        maven { setUrl("https://repo.spring.io/milestone") }
+        maven { setUrl("https://repo.spring.io/snapshot") }
+    }
 
-plugins {
-    kotlin("jvm") version embeddedKotlinVersion
-    id("io.spring.dependency-management") version "1.0.3.RELEASE"
+    apply {
+        plugin("kotlin")
+    }
 
-    /** handle open class ('final' in java) to generate Beans */
-    id("org.jetbrains.kotlin.plugin.spring") version embeddedKotlinVersion
-    id("org.springframework.boot") version "2.0.4.RELEASE"
-}
+    dependencies {
+        implementation(kotlin("stdlib-jdk8"))          // changed from line above that worked in initial code
+//        compile(kotlin("stdlib"))          // changed from line above that worked in initial code
+        implementation(kotlin("reflect"))
+    }
 
-dependencies {
-    compile("org.springframework.boot:spring-boot-starter")
-    compile(kotlin("stdlib-jdk8"))          // changed from line above that worked in initial code
-    compile(kotlin("reflect"))
-}
-
-val project = mapOf(
-    name to "backend"
-)
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "1.8"
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
     }
 }
 
