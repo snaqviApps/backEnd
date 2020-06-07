@@ -8,11 +8,7 @@ import org.springframework.context.support.GenericApplicationContext
 import org.springframework.context.support.beans
 
 @SpringBootApplication
-class Config(private val helloWorld: IHelloWorld): CommandLineRunner {
-    override fun run(vararg args: String?) {
-        helloWorld.sayHello()
-    }
-}
+class Config
 
 fun main(args: Array<String>){
     val application = SpringApplication(Config::class.java)
@@ -20,7 +16,7 @@ fun main(args: Array<String>){
             ApplicationContextInitializer<GenericApplicationContext> {ctx ->
                 beans {
                     bean<HelloWorldConfig>()
-                }.invoke(ctx)
+                }(ctx)
     })
     application.run(*args)
 }
