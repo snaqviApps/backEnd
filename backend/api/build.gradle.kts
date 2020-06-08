@@ -6,6 +6,11 @@ apply {
 }
 dependencies {
     val springBootVersion: String = parent!!.properties["springBootVersion"] as String
-    compile(project(":backend:component"))
-    compile ("org.springframework.boot:spring-boot-starter:$springBootVersion")
+    val kotlinHtmlVersion: String = properties["kotlinHtmlVersion"] as String
+    implementation (project(":backend:component"))
+    implementation ("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    implementation ("org.springframework.boot:spring-boot-devtools:$springBootVersion")
+
+    implementation ("org.jetbrains.kotlinx:kotlinx-html-jvm:$kotlinHtmlVersion")
+
 }
