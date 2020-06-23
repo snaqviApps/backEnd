@@ -7,6 +7,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.3.72"
+//    id("org.jetbrains.kotlin.jvm") version "1.1.4"
 }
 
 buildscript {
@@ -44,3 +45,4 @@ subprojects {
 }
 
 /** removed fatJar 'task' as new dependencies above will manage those tasks */
+
